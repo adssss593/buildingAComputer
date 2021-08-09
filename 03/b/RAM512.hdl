@@ -15,9 +15,9 @@ CHIP RAM512 {
     OUT out[16];
 
     PARTS:
-    // Put your code here:
+    
 
-        // access logic
+    // access logic
     DMux8Way(in=load, sel=address[6..8],
              a=load0, b=load1, c=load2, d=load3,
              e=load4, f=load5, g=load6, h=load7);
