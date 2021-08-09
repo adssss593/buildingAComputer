@@ -1,0 +1,32 @@
+CHIP Mux4Way {
+    IN a, b, c, d, sel[2];
+    OUT out;
+
+    PARTS:
+    // Put your code here:
+
+    Not(in=sel[0],out=notsel0);
+    Not(in=sel[1],out=notsel1);
+
+    //A and gate
+    And(a=notsel0,b=notsel1,out=w1);
+    And(a=w1,b=a,out=a0);
+
+    //B and gate
+    And(a=notsel1,b=sel[0],out=w2);
+    And(a=w2,b=b,out=b0);
+
+    //C And gate
+    And(a=sel[1],b=notsel0,out=w3);
+    And(a=w3,b=c,out=c0);
+
+    //D And gate
+    And(a=sel[1],b=sel[0],out=w4);
+    And(a=w4,b=d,out=d0);
+
+    //4way Or gate
+    Or(a=a0,b=b0,out=w5);
+    Or(a=w5,b=c0,out=w6);
+    Or(a=w6,b=d0,out=out);
+
+}
