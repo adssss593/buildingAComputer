@@ -12,3 +12,43 @@
 // the screen should remain fully clear as long as no key is pressed.
 
 // Put your code here.
+
+	@whtCounter
+	M=0
+	@blkCounter
+	M=0
+
+(LOOP)
+	@24576	//Keyboard location to register A
+	D=M
+	@BLACKSCREEN
+	D;JNE	//if value in keyboard location is not 0, jump to black screen
+	@WHITESCREEN
+	0;JMP	//otherwise jump to white screen
+
+(BLACKSCREEN)
+	@whtCounter
+	M=0
+	@blkCounter
+	D=M
+	@SCREEN
+	A=D+A
+	M=-1
+	@blkCounter
+	M=M+1
+	@LOOP
+	0;JMP
+
+(WHITESCREEN)
+	@blkCounter
+	M=0
+	@whtCounter
+	D=M
+	@SCREEN
+	A=D+A
+	M=0
+	@whtCounter
+	M=M+1
+	@LOOP
+	0;JMP
+	
